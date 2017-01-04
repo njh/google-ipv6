@@ -30,6 +30,13 @@ end
 
 
 
+def flag_img(code)
+  png_file = "flags/#{code.downcase}.png"
+  png_file = "flags/zz.png" unless File.exist?(png_file)
+  "<img class='flag' src='#{png_file}' width='16' height='11' alt='Flag for #{code}' />"
+end
+
+
 template = Tilt::ErubisTemplate.new(
   "index.html.erb",
   :escape_html => true

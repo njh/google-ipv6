@@ -32,10 +32,7 @@
       <% data.each_with_index do |row, index| %>
         <tr>
           <td><%= index+1 %></td>
-          <td>
-            <img class="flag" src="flags/<%= row[:code].downcase %>.png" width="16" height="11" alt="<%= row[:code] %> Flag" />
-            <%= row[:name] %>
-          </td>
+          <td><%== flag_img(row[:code]) %> <%= row[:name] %></td>
           <td><%= row[:adoption] %>%</td>
           <td><%= row[:latency] %>ms</td>
           <td><%= row[:impact] %>%</td>
