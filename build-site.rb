@@ -3,13 +3,18 @@
 require 'bundler/setup'
 Bundler.require(:default)
 
-data = []
+data = {
+  :countries => []
+}
+
 File.open('worldmap.js') do |file|
 
   file.each do |line|
-    if line =~ /(\["\w\w", .+\]),/
+    if line =~ /Per country IPv6 data, as of (.+)\./
+      data[:updated_at] = Time.parse($1)
+    elsif line =~ /(\["\w\w", .+\]),/
       row = JSON.parse($1)
-      data << {
+      data[:countries] << {
         :code => row[0],
         :name => row[1],
         :adoption => row[2],
@@ -22,7 +27,7 @@ File.open('worldmap.js') do |file|
 
 end
 
-data.sort! {|a,b| b[:adoption] <=> a[:adoption] }
+data[:countries].sort! {|a,b| b[:adoption] <=> a[:adoption] }
 
 File.open("google-ipv6-by-country-#{Date.today}.json", 'wb') do |file|
   file.write JSON.pretty_generate(data)

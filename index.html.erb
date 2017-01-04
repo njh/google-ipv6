@@ -29,13 +29,13 @@
         <th>Latency</th>
         <th>Impact</th>
       </tr>
-      <% data.each_with_index do |row, index| %>
+      <% data[:countries].each_with_index do |country, index| %>
         <tr>
           <td><%= index+1 %></td>
-          <td><%== flag_img(row[:code]) %> <%= row[:name] %></td>
-          <td><%= row[:adoption] %>%</td>
-          <td><%= row[:latency] %>ms</td>
-          <td><%= row[:impact] %>%</td>
+          <td><%== flag_img(country[:code]) %> <%= country[:name] %></td>
+          <td><%= country[:adoption] %>%</td>
+          <td><%= country[:latency] %>ms</td>
+          <td><%= country[:impact] %>%</td>
         </tr>
       <% end %>
     </table>
@@ -54,7 +54,7 @@
         Flag icons by <a href="http://www.famfamfam.com/lab/icons/flags/">famfamfam.com</a>.
       </p>
       <p>
-        The content on this site was last updated: <%= Time.now %>
+        The content on this site was last updated: <%= data[:updated_at].gmtime %>
       </p>
     </div>
   </footer>
