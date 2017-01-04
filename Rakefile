@@ -20,5 +20,5 @@ task :build => ['index.html']
 task :default => [:clean, :build]
 
 task :clean do
-  rm 'worldmap.js'
+  rm 'worldmap.js', :force => true
 end
