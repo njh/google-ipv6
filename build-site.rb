@@ -33,7 +33,9 @@ end
 def flag_img(code)
   png_file = "flags/#{code.downcase}.png"
   png_file = "flags/zz.png" unless File.exist?(png_file)
-  "<img class='flag' src='#{png_file}' width='16' height='11' alt='Flag for #{code}' />"
+  "<a href='https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2##{code}' title='#{code}'>"+
+  "<img class='flag' src='#{png_file}' width='16' height='11' alt='Flag for #{code}' />"+
+  "</a>"
 end
 
 
