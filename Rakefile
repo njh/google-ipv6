@@ -1,9 +1,13 @@
 #!/usr/bin/env ruby
 
+Rake::FileUtilsExt.verbose_flag = false
+
+
 desc "Download the current Google data"
 file 'worldmap.js' do |task|
   sh 'curl',
      '--fail',
+     '--silent',
      '--output', task.name,
      'https://www.google.com/intl/en_ALL/ipv6/statistics/data/worldmap.js'
 end
