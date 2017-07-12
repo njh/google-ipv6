@@ -12,9 +12,9 @@ file 'worldmap.js' do |task|
      'https://www.google.com/intl/en_ALL/ipv6/statistics/data/worldmap.js'
 end
 
-desc "Create HTML file"
+desc "Create index HTML file"
 file 'index.html' => ['worldmap.js'] do
-  ruby 'build-site.rb'
+  ruby 'build-index.rb'
 end
 
 desc "Generate all the files"
