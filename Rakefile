@@ -17,12 +17,18 @@ file 'index.html' => ['worldmap.js'] do
   ruby 'build-index.rb'
 end
 
-desc "Generate all the files"
-task :build => ['index.html']
+desc "Create country graph HTML files"
+task :build_graphs do
+  ruby 'build-graphs.rb'
+end
+
+desc "Generate all the HTML files"
+task :build => ['index.html', :build_graphs]
 
 
 task :default => [:clean, :build]
 
 task :clean do
+  rm Dir.glob('*.html'), :force => true
   rm 'worldmap.js', :force => true
 end

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Google IPv6 Country Rank</title>
+  <title>Google IPv6 Country Adoption - <%= name %></title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css" integrity="sha384-XYCjB+hFAjSbgf9yKUgbysEjaVLOXhCgATTEBpCqT1R3jvG5LGRAK5ZIyRbH5vpX" crossorigin="anonymous">
@@ -15,33 +15,17 @@
 <body>
 
   <div class="container">
-    <h1>Google IPv6 Country Rank</h1>
+    <h1>Google IPv6 Country Adoption - <%= name %></h1>
     
     <p>
-    Per-country ranking table based on data from <a href="https://www.google.com/intl/en/ipv6/statistics.html">Google IPv6 Statistics</a> page.
+      Country adoption graph based on data from <a href="https://www.google.com/intl/en/ipv6/statistics.html">Google IPv6 Statistics</a> page.
     </p>
     
-    <table class="table table-striped table-bordered">
-      <tr>
-        <th>#</th>
-        <th>Country</th>
-        <th>Adoption</th>
-        <th>Latency</th>
-        <th>Impact</th>
-      </tr>
-      <% data[:countries].each_with_index do |country, index| %>
-        <tr>
-          <td><%= index+1 %></td>
-          <td>
-            <%== flag_img(country[:code]) %>
-            <a href="<%= country[:code].downcase %>.html"><%= country[:name] %></a>
-          </td>
-          <td><%= country[:adoption] %>%</td>
-          <td><%= country[:latency] %>ms</td>
-          <td><%= country[:impact] %>%</td>
-        </tr>
-      <% end %>
-    </table>
+    <canvas id="chart" height="300"></canvas>
+
+    <p>
+      <a href=".">Back to the list of countries</a>.
+    </p>
   </div>
 
   <footer class="footer">
@@ -54,10 +38,7 @@
         <a href="https://github.com/njh/google-ipv6">https://github.com/njh/google-ipv6</a>
       </p>
       <p>
-        Flag icons by <a href="http://www.famfamfam.com/lab/icons/flags/">famfamfam.com</a>.
-      </p>
-      <p>
-        The content on this site was last updated: <%= data[:updated_at].gmtime %>
+        The content on this site was last updated: <%= Time.now.gmtime %>
       </p>
     </div>
   </footer>
@@ -65,8 +46,42 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+  <!-- chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script>
+  var ctx = document.getElementById("chart").getContext('2d');
+  ctx.height = 300;
+
+  var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: <%= labels %>,
+          datasets: [{
+              label: 'Adoption %',
+              data: <%= data %>,
+              backgroundColor: 'rgba(54, 162, 235, 0.2)',
+              borderColor: 'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          maintainAspectRatio: false,
+          scales: {
+              xAxes: [{
+                  time: {
+                      unit: 'day'
+                  }
+              }],
+              yAxes: [{}]
+          }
+      }
+  });
+  </script>
+
 </body>
 
 </html>
