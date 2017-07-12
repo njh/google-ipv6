@@ -13,8 +13,8 @@ Dir.glob('google-ipv6-by-country-*.json') do |filename|
   date = Time.parse(data['updated_at']).strftime('%Y-%m-%d')
   data['countries'].each do |country|
     code = country['code'].downcase
-    countries[code] ||= {'name' => country['name'], 'data' => {}}
-    countries[code]['data'][date] = country['adoption']
+    countries[code] ||= {:name => country['name'], :code => code, :data => []}
+    countries[code][:data] << {:date => date, :value => country['adoption']}
   end
 end
 
@@ -25,14 +25,15 @@ template = Tilt::ErubisTemplate.new(
   :escape_html => false
 )
 
-countries.each_pair do |country,data|
+countries.values.each do |country|
+  country[:data].sort! {|a,b| a[:date] <=> b[:date]}
 
-  File.open("#{country}.html", 'wb') do |file|
+  File.open("#{country[:code]}.html", 'wb') do |file|
     file.write template.render(
       self,
-      :name => data['name'],
-      :labels => JSON.generate(data['data'].keys),
-      :data => JSON.generate(data['data'].values)
+      :name => country[:name],
+      :labels => JSON.generate(country[:data].map {|n| n[:date]}),
+      :data => JSON.generate(country[:data].map {|n| n[:value]})
     )
   end
 
