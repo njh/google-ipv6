@@ -1,13 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.5.0)
-      public_suffix (~> 2.0, >= 2.0.2)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     erubis (2.7.0)
-    json (2.0.2)
-    public_suffix (2.0.5)
-    rake (10.4.2)
-    tilt (2.0.5)
+    json (2.1.0)
+    public_suffix (3.0.1)
+    rake (12.3.0)
+    tilt (2.0.8)
 
 PLATFORMS
   ruby
@@ -20,4 +20,4 @@ DEPENDENCIES
   tilt
 
 BUNDLED WITH
-   1.13.7
+   1.16.1
