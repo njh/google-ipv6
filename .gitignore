@@ -1,3 +1,6 @@
 public/*.html
 public/google-ipv6-by-country-*.json
 worldmap.js
+
+.bundle
+vendor/bundle
