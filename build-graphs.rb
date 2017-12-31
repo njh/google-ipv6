@@ -8,7 +8,7 @@ countries = {
 
 
 # First gather the data
-Dir.glob('google-ipv6-by-country-*.json') do |filename|
+Dir.glob('public/google-ipv6-by-country-*.json') do |filename|
   data = JSON.parse(File.read(filename))
   date = Time.parse(data['updated_at']).strftime('%Y-%m-%d')
   data['countries'].each do |country|
@@ -28,7 +28,7 @@ template = Tilt::ErubisTemplate.new(
 countries.values.each do |country|
   country[:data].sort! {|a,b| a[:date] <=> b[:date]}
 
-  File.open("#{country[:code]}.html", 'wb') do |file|
+  File.open("public/#{country[:code]}.html", 'wb') do |file|
     file.write template.render(
       self,
       :name => country[:name],

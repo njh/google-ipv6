@@ -29,7 +29,7 @@ end
 
 data[:countries].sort! {|a,b| b[:adoption] <=> a[:adoption] }
 
-File.open("google-ipv6-by-country-#{Date.today}.json", 'wb') do |file|
+File.open("public/google-ipv6-by-country-#{Date.today}.json", 'wb') do |file|
   file.write JSON.pretty_generate(data)
 end
 
@@ -37,7 +37,7 @@ end
 
 def flag_img(code)
   png_file = "flags/#{code.downcase}.png"
-  png_file = "flags/zz.png" unless File.exist?(png_file)
+  png_file = "flags/zz.png" unless File.exist?("public/#{png_file}")
   "<a href='https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2##{code}' title='#{code}'>"+
   "<img class='flag' src='#{png_file}' width='16' height='11' alt='Flag for #{code}' />"+
   "</a>"
@@ -49,7 +49,7 @@ template = Tilt::ErubisTemplate.new(
   :escape_html => true
 )
 
-File.open('index.html', 'wb') do |file|
+File.open('public/index.html', 'wb') do |file|
   file.write template.render(self, :data => data)
 end
 
