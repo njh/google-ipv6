@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 gem 'addressable'
-gem 'json'
+gem 'json_pure', :require => "json/pure"
 gem 'rake'
 gem 'erubis'
 gem 'tilt'
