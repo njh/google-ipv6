@@ -45,7 +45,7 @@ def flag_img(code)
 end
 
 
-template = Tilt::ErubisTemplate.new(
+template = Tilt::ErubiTemplate.new(
   "index.html.erb",
   :escape_html => true
 )

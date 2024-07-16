@@ -21,7 +21,7 @@ end
 
 
 # Second, write the HTML files
-template = Tilt::ErubisTemplate.new(
+template = Tilt::ErubiTemplate.new(
   "country.html.erb",
   :escape_html => false
 )
