@@ -1,24 +1,23 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.0)
-      public_suffix (>= 2.0.2, < 5.0)
-    erubis (2.7.0)
-    json_pure (2.5.1)
-    public_suffix (4.0.6)
-    rake (13.0.6)
-    tilt (2.0.10)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
+    erubi (1.13.0)
+    json_pure (2.7.2)
+    public_suffix (6.0.0)
+    rake (13.2.1)
+    tilt (2.4.0)
 
 PLATFORMS
-  ruby
-  x86_64-darwin-18
+  arm64-darwin-23
 
 DEPENDENCIES
   addressable
-  erubis
+  erubi
   json_pure
   rake
   tilt
 
 BUNDLED WITH
-   2.2.0
+   2.3.7
