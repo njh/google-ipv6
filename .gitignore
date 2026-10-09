@@ -1,4 +1,5 @@
 public/*.html
+public/google-ipv6-by-country-*.csv
 public/google-ipv6-by-country-*.json
 worldmap.js
 

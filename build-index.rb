@@ -2,6 +2,7 @@
 
 require 'bundler/setup'
 require 'time'
+require 'csv'
 Bundler.require(:default)
 
 data = {
@@ -30,8 +31,20 @@ end
 
 data[:countries].sort! {|a,b| b[:adoption] <=> a[:adoption] }
 
-File.open("public/google-ipv6-by-country-#{Date.today}.json", 'wb') do |file|
+today = Date.today
+json_file = "google-ipv6-by-country-#{today}.json"
+csv_file = "google-ipv6-by-country-#{today}.csv"
+
+File.open("public/#{json_file}", 'wb') do |file|
   file.write JSON.pretty_generate(data)
+end
+
+CSV.open("public/#{csv_file}", 'wb') do |csv|
+  cols = [:code, :name, :adoption, :latency, :impact]
+  csv << cols
+  data[:countries].each do |country|
+    csv << cols.map {|col| country[col]}
+  end
 end
 
 
