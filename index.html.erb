@@ -59,6 +59,10 @@
       <p>
         The content on this site was last updated: <%= data[:updated_at].gmtime %>
       </p>
+      <p>
+        <a class="download-badge" href="<%= json_file %>" title="Download as JSON"><span class="download-badge-name">download</span><span class="download-badge-format">JSON</span></a>
+        <a class="download-badge" href="<%= csv_file %>" title="Download as CSV"><span class="download-badge-name">download</span><span class="download-badge-format">CSV</span></a>
+      </p>
     </div>
   </footer>
 

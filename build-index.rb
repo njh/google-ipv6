@@ -64,6 +64,6 @@ template = Tilt::ErubiTemplate.new(
 )
 
 File.open('public/index.html', 'wb') do |file|
-  file.write template.render(self, :data => data)
+  file.write template.render(self, :data => data, :json_file => json_file, :csv_file => csv_file)
 end
 

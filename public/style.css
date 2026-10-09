@@ -14,3 +14,29 @@
   text-align: center;
   background-color: #501E42;
 }
+
+.download-badge
+{
+  display: inline-block;
+  margin: 0 4px;
+  border-radius: 3px;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+.download-badge span
+{
+  display: inline-block;
+  padding: 2px 6px;
+  color: #ffffff;
+}
+
+.download-badge-name
+{
+  background-color: #555555;
+}
+
+.download-badge-format
+{
+  background-color: #18BC9C;
+}
