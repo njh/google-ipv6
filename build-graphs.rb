@@ -2,6 +2,7 @@
 
 require 'bundler/setup'
 require 'time'
+require 'json'
 Bundler.require(:default)
 
 countries = {

@@ -2,6 +2,7 @@
 
 require 'bundler/setup'
 require 'time'
+require 'json'
 require 'csv'
 Bundler.require(:default)
 
